@@ -48,7 +48,9 @@ app.delete('/users/:id', async (req, res) => {
     const id = req.params["id"];
     const deletedUser = await userServices.deleteUserId(id);
     if (deletedUser)
-        res.status()
+        res.status(204).end();
+    else
+        res.status(404).end();
     
 })
 

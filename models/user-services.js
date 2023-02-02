@@ -43,23 +43,30 @@ async function addUser(user) {
   }
 }
 
-
 async function findUserByName(name) {
   return await userModel.find({ name: name });
 }
 
 async function findUserByJob(job) {
   return await userModel.find({ job: job });
-}
+};
 
 async function findUserByNameJob(name, job){
   name_result = await userModel.find({name : name});
-  console.log(name_result);
   result = name_result.filter( (user) => user['job'] === job);
-  console.log(result);
   return result;
+};
+
+async function deleteUserId(id){
+  const result = await userModel.findByIdAndDelete(id);
+  return result;
+  // const user_index = await userModel.findIndex( (user) => user['id'] === id);
+  // if (user_index > -1 && user_index != undefined && user_index.length !== 0){
+
+  // }
 }
 
 exports.getUsers = getUsers;
 exports.findUserById = findUserById;
 exports.addUser = addUser;
+exports.deleteUserId = deleteUserId;
